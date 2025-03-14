@@ -1,16 +1,11 @@
-# Node Base Image
-FROM node:12.2.0-alpine
+FROM python:3.8
 
-#Working Directry
-WORKDIR /node
+WORKDIR /app
 
-#Copy the Code
-COPY . .
+COPY . /app
 
-#Install the dependecies
-RUN npm install
-RUN npm run test
+RUN apt update && apt install -y nodejs npm
+
 EXPOSE 8000
 
-#Run the code
-CMD ["node","app.js"]
+CMD ["node", "app.js"]
